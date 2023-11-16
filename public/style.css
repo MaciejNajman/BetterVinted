@@ -2,13 +2,29 @@ body {
     font-family: 'Open Sans', Helvetica, sans-serif;
     margin: 0;
     padding: 24px;
-}
+    background-color: white;
+    color: black;
+    font-size: 15px;
+    transition: 0.5s;
+  }
+  
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
 
 header {
     border-bottom: #999 1px solid;
-    font-size: 200%;
+    font-size: 150%;
     font-weight: bold;
     padding-bottom: 12px;
+}
+
+footer {
+    border-top: #999 1px solid;
+    font-size: 150%;
+    font-weight: bold;
+    padding-top: 12px;
 }
 
 header span {
@@ -36,14 +52,64 @@ form input {
     padding: 15px;
 }
 
-.albums {
+.items { grid-area: main; }
+
+.grid-container {
     display: grid;
-    grid-gap: 12px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template: 150px / auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+
+#toggle
+{
+    position: relative;
+    display: block;
+    width: 120px;
+    height: 60px;
+    border-radius: 160px;
+    background: #222;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: inset 0 8px 60px rgba(0,0,0,0.1),
+                inset 0 8px 8px rgba(0,0,0,0.1),
+                inset 0 -4px 4px rgba(0,0,0,0.1);
+}
+#toggle.active
+{
+    background: #fff;
+    box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
+                inset 0 2px 8px rgba(0,0,0,0.1),
+                inset 0 -4px 4px rgba(0,0,0,0.05);
+}
+#toggle .indicator
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(to bottom, #444, #222);
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5),
+                inset 0 4px 4px rgba(255,255,255,0.2),
+                inset 0 -4px 4px rgba(255,255,255,0.2);
+    transition: 0.5s;
 }
 
-.albums > div {
-    background: linear-gradient(to bottom, #fff -5%, #65A7A8 120%);
-    padding: 12px;
-    text-align: center;
+#toggle.active .indicator
+{
+    left: 60px;
+    background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1),
+                inset 0 4px 4px rgba(255,255,255,1),
+                inset 0 -4px 4px rgba(255,255,255,1);
 }

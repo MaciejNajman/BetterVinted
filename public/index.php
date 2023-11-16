@@ -21,7 +21,7 @@ AppFactory::setContainer($container);
 
 $app = AppFactory::create();
 
-$app->get('/', '\App\Controller\SearchController:default');
+$app->get('/', '\App\Controller\HomepageController:homepage');
 $app->get('/vinted', '\App\Controller\VintedController:search');
 $app->get('/vinted/', '\App\Controller\VintedController:search');
 $app->get('/vinted/{query}', '\App\Controller\VintedController:search');

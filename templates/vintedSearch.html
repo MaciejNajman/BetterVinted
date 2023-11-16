@@ -1,0 +1,42 @@
+{{> header.html}}
+
+<h1>Vinted Search Results From URL</h1>
+
+<div class="div-container">
+  {{#data}}
+      {{#items}}
+      <div class="item1" style="border: medium solid #3385ff; border-radius: 12px; padding: 10px; margin: 10px;">
+        {{#user}}
+        <div>
+          <a href="{{profile_url}}">
+            <div>
+              {{login}}
+            </div>
+            <div>
+              {{#photo}}
+              <div><img src={{url}} alt="photo_url" width="50" height="50"></img></div>
+              {{/photo}}
+            </div>
+          </a>
+        </div>
+        {{/user}}
+        <div>
+          <a href="{{url}}" alt="item_url">
+            {{#photo}}
+              <div><img src="{{url}}" alt="item_photo" width="200" height="200"></img></div>
+            {{/photo}}
+          </a>
+        </div>
+        <div>
+          <h2>{{title}}</h2>
+            <p>{{price}}&nbsp{{currency}}</p>
+            <p>{{favourite_count}} serduszek <b><mark><3</mark></b></p>
+            <p>Stan: {{status}}</p>
+            <p>{{brand_title}}</p>
+        </div>
+      </div>
+      {{/items}}
+  {{/data}}
+</div>
+
+{{> footer.html}}
