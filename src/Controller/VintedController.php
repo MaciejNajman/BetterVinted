@@ -99,9 +99,13 @@ class VintedController extends Controller {
           if (count($data['items']) != 0){
             break;
           }
-        }   
+        }
       }
-      return $response->withJson($data);
+      //var_dump($method = $request->getMethod());
+      //var_dump($data);
+      return $this->render($response, 'vintedSearch.html', [
+        'data' => $data
+      ]);
     }
     else if(isset($args['query'])) {
       $query = $args['query'];
@@ -114,7 +118,9 @@ class VintedController extends Controller {
           }
         }   
       }
-      return $response->withJson($data);
+      return $this->render($response, 'vintedSearch.html', [
+        'data' => $data
+      ]);
     }else{
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
