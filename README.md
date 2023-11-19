@@ -1,6 +1,6 @@
 # BetterVinted
 IAM2 better vinted app.  
-Uruchomienie projektu:  
+Pierwsze uruchomienie projektu:  
 1.Wykonanie komendy "composer install" w folderze \BetterVinted (główny folder projektu).  
 2.Wykonanie komendy "php -S localhost:8080 -t public"
 
