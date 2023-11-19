@@ -35,4 +35,7 @@ $errorMiddleware->setErrorHandler(
     return $controller->notFound($request);
 });
 
+// Set default timezone
+date_default_timezone_set('Europe/Warsaw');
+
 $app->run();

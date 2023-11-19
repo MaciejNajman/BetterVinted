@@ -89,34 +89,39 @@ class VintedController extends Controller {
   }
 
   public function search(Request $request, Response $response, array $args){
-    if(isset($args['query']) && isset($args['cnt'])) {
-      $query = $args['query'];
-      $cnt = $args['cnt'];
+    $queryValue = rawurlencode($request->getQueryParam('query'));
+    $cntValue = $request->getQueryParam('cnt');
+
+    if($queryValue == ''){
+      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+    }
+    
+    if(!empty($queryValue) && !empty($cntValue)) {
+      $query = $this->test_input($queryValue);
+      $cnt = $this->test_input($cntValue);
       if ($query && $cnt){
         $cookie = $this->get_cookie("https://www.vinted.pl/");
         for ($x = 0; $x <= 10; $x++) {
           $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='.$cnt, '_vinted_fr_session='.$cookie), true);
-          if (count($data['items']) != 0){
+          if (is_countable($data) && count($data['items']) != 0){
             break;
           }
         }
       }
-      //var_dump($method = $request->getMethod());
-      //var_dump($data);
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data
       ]);
     }
-    else if(isset($args['query'])) {
-      $query = $args['query'];
+    else if(!empty($queryValue)) {
+      $query = $this->test_input($queryValue);
       if ($query){
         $cookie = $this->get_cookie("https://www.vinted.pl/");
         for ($x = 0; $x <= 10; $x++) {
           $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query, '_vinted_fr_session='.$cookie), true);
-          if (count($data['items']) != 0){
+          if (is_countable($data) && count($data['items']) != 0){
             break;
           }
-        }   
+        }
       }
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data
@@ -124,6 +129,13 @@ class VintedController extends Controller {
     }else{
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
+  }
+
+  public function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
   }
 }
 

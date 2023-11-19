@@ -52,28 +52,26 @@ form input {
     padding: 15px;
 }
 
-.items { grid-area: main; }
-
 .grid-container {
-    display: grid;
-    grid-template: 150px / auto auto auto;
-    grid-gap: 10px;
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 20px;
+    text-align: center;
   }
   
-  .grid-container > div {
-    background-color: rgba(255,255,255,0.8);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
+  .grid-item {
+    box-sizing: border-box;
+    position: relative;
   }
 
 #toggle
 {
     position: relative;
     display: block;
-    width: 120px;
-    height: 60px;
+    width: 80px;
+    height: 40px;
     border-radius: 160px;
     background: #222;
     transition: 0.5s;
@@ -94,8 +92,8 @@ form input {
     position: absolute;
     top: 0;
     left: 0;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(to bottom, #444, #222);
     border-radius: 50%;
     transform: scale(0.9);
@@ -107,7 +105,7 @@ form input {
 
 #toggle.active .indicator
 {
-    left: 60px;
+    left: 40px;
     background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
     box-shadow: 0 8px 20px rgba(0,0,0,0.1),
                 inset 0 4px 4px rgba(255,255,255,1),

@@ -1,42 +1,49 @@
 {{> header.html}}
 
-<h1>Vinted Search Results From URL</h1>
+<h1>Wyniki wyszukiwania w Vinted</h1>
 
-<div class="div-container">
-  {{#data}}
-      {{#items}}
-      <div class="item1" style="border: medium solid #3385ff; border-radius: 12px; padding: 10px; margin: 10px;">
-        {{#user}}
-        <div>
-          <a href="{{profile_url}}">
-            <div>
-              {{login}}
-            </div>
-            <div>
-              {{#photo}}
-              <div><img src={{url}} alt="photo_url" width="50" height="50"></img></div>
-              {{/photo}}
-            </div>
-          </a>
-        </div>
-        {{/user}}
-        <div>
-          <a href="{{url}}" alt="item_url">
+{{#data}}
+<div class="grid-container">
+{{#items}}
+    <div class="grid-item" style="border: medium solid #3385ff; border-radius: 12px; padding: 10px; margin: 10px;">
+      {{#user}}
+      <div>
+        <a href="{{profile_url}}">
+          <div>
+            {{login}}
             {{#photo}}
-              <div><img src="{{url}}" alt="item_photo" width="200" height="200"></img></div>
+            <img src={{url}} alt="photo_url" width="30" height="30"></img>
             {{/photo}}
-          </a>
-        </div>
-        <div>
-          <h2>{{title}}</h2>
-            <p>{{price}}&nbsp{{currency}}</p>
-            <p>{{favourite_count}} serduszek <b><mark><3</mark></b></p>
-            <p>Stan: {{status}}</p>
-            <p>{{brand_title}}</p>
-        </div>
+          </div>
+        </a>
       </div>
-      {{/items}}
-  {{/data}}
+      {{/user}}
+      <div>
+        <a href="{{url}}" alt="item_url">
+          {{#photo}}
+          <div><img src="{{url}}" alt="item_photo" width="200" height="200"></img></div>
+          {{/photo}}
+        </a>
+      </div>
+      <div>
+        <h2>{{title}}</h2>
+        <p>{{price}}&nbsp{{currency}}</p>
+        <p>{{favourite_count}} serduszek <b><3</b>
+        </p>
+        <p>Stan: {{status}}</p>
+        <p>{{brand_title}}</p>
+      </div>
+    </div>
+{{/items}}
 </div>
+{{/data}}
+{{#data}}
+{{^items}}
+<div>
+  <h2>Niestety, pusto.</h2>
+  <p>Nie znaleźliśmy pasujących przedmiotów. Spróbuj wpisać inne słowo kluczowe lub zmienić filtry.</p>
+</div>
+{{/items}}
+{{/data}}
 
 {{> footer.html}}
