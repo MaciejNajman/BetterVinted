@@ -3,13 +3,13 @@
 <h1>Strona główna</h1>
 
 <p>Witamy na stronie głównej.</p>
-<p>Proszę podać zapytanie oraz numer strony do wyświetlenia:</p>
+<p>Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</p>
 <form action="vinted" method="GET">
-    <label for="query">Zapytanie:</label><br>
-    <input type="text" id="query" name="query" placeholder="adidas"><br>
+    <label for="query">Nazwa szukanego przedmiotu:</label><br>
+    <input type="text" id="query" name="query" placeholder="adidas" maxlength="30" required><br>
     <label for="cnt">Numer strony:</label><br>
     <input type="number" min="1" max="10" id="cnt" name="cnt" placeholder="1"><br><br>
     <input type="submit" value="Wyślij">
 </form>
 
-{{> footer.html}} 
+{{> footer.html}}

@@ -52,20 +52,18 @@ form input {
     padding: 15px;
 }
 
-.items { grid-area: main; }
-
 .grid-container {
-    display: grid;
-    grid-template: 150px / auto auto auto;
-    grid-gap: 10px;
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 20px;
+    text-align: center;
   }
   
-  .grid-container > div {
-    background-color: rgba(255,255,255,0.8);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
+  .grid-item {
+    box-sizing: border-box;
+    position: relative;
   }
 
 #toggle
