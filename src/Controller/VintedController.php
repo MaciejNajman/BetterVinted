@@ -91,6 +91,7 @@ class VintedController extends Controller {
   public function search(Request $request, Response $response, array $args){
     $queryValue = rawurlencode($request->getQueryParam('query'));
     $cntValue = $request->getQueryParam('cnt');
+    $sortValue = $request->getQueryParam('sort');
 
     if($queryValue == ''){
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
@@ -108,7 +109,23 @@ class VintedController extends Controller {
           }
         }
       }
-      usort($data['items'], fn($a, $b) => $b['favourite_count'] <=> $a['favourite_count']);
+      //Sortowanie
+      switch ($sortValue) {
+        case 0:
+          usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
+            break;
+        case 1:
+          usort($data['items'], fn($b, $a) => $b['favourite_count'] <=> $a['favourite_count']);
+            break;
+        case 2:
+          usort($data['items'], fn($b, $a) => $a['title'] <=> $b['title']);
+            break;
+        case 3:
+          usort($data['items'], fn($a, $b) => $a['title'] <=> $b['title']);
+            break;
+        default:
+    } 
+
 
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data
@@ -125,6 +142,25 @@ class VintedController extends Controller {
           }
         }
       }
+
+      //Sortowanie
+
+      switch ($sortValue) {
+        case 0:
+          usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
+            break;
+        case 1:
+          usort($data['items'], fn($b, $a) => $b['favourite_count'] <=> $a['favourite_count']);
+            break;
+        case 2:
+          usort($data['items'], fn($b, $a) => $a['title'] <=> $b['title']);
+            break;
+        case 3:
+          usort($data['items'], fn($a, $b) => $a['title'] <=> $b['title']);
+            break;
+        default:
+    } 
+
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data
       ]);

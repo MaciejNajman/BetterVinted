@@ -8,13 +8,15 @@
     <label for="cnt">Numer strony:</label><br>
     <input type="number" min="1" max="10" id="cnt" name="cnt" placeholder="1"><br><br>
     <input type="submit" value="Wyślij">
+
+    <select name="sort" id="sort">
+      <option value="0">Po serduszkach rosnąco</option>
+      <option value="1">Po serduszkach malejąco</option>
+      <option value="2">Po cenie rosnąco</option>
+      <option value="3">Po cenie malejąco</option>
+    </select>
 </form>
-<select name="sort" id="sort">
-  <option value="favourite_count_asc">Po serduszkach rosnąco</option>
-  <option value="favourite_count_desc">Po serduszkach malejąco</option>
-  <option value="price_asc">Po cenie rosnąco</option>
-  <option value="price_desc">Po cenie malejąco</option>
-</select>
+
 
 {{#data}}
 <div class="grid-container">
