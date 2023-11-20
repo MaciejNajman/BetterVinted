@@ -108,6 +108,8 @@ class VintedController extends Controller {
           }
         }
       }
+      usort($data['items'], fn($a, $b) => $b['favourite_count'] <=> $a['favourite_count']);
+
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data
       ]);

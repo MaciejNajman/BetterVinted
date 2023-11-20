@@ -1,6 +1,20 @@
 {{> header.html}}
 
 <h1>Wyniki wyszukiwania w Vinted</h1>
+<p>Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</p>
+<form action="vinted" method="GET">
+    <label for="query">Nazwa szukanego przedmiotu:</label><br>
+    <input type="text" id="query" name="query" placeholder="adidas" maxlength="30" required><br>
+    <label for="cnt">Numer strony:</label><br>
+    <input type="number" min="1" max="10" id="cnt" name="cnt" placeholder="1"><br><br>
+    <input type="submit" value="Wyślij">
+</form>
+<select name="sort" id="sort">
+  <option value="favourite_count_asc">Po serduszkach rosnąco</option>
+  <option value="favourite_count_desc">Po serduszkach malejąco</option>
+  <option value="price_asc">Po cenie rosnąco</option>
+  <option value="price_desc">Po cenie malejąco</option>
+</select>
 
 {{#data}}
 <div class="grid-container">
