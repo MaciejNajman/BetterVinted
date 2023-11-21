@@ -89,12 +89,12 @@ class VintedController extends Controller {
   }
 
   public function search(Request $request, Response $response, array $args){
-    $queryValue = rawurlencode($request->getQueryParam('query'));
-    $cntValue = $request->getQueryParam('cnt');
+    //$queryValue = rawurlencode($request->getQueryParam('query'));
+    //$cntValue = $request->getQueryParam('cnt');
 
-    if($queryValue == ''){
-      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
-    }
+    //if($queryValue == ''){
+     // return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+    //}
     
     if(!empty($queryValue) && !empty($cntValue)) {
       $query = $this->test_input($queryValue);
@@ -102,10 +102,11 @@ class VintedController extends Controller {
       if ($query && $cnt){
         $cookie = $this->get_cookie("https://www.vinted.pl/");
         for ($x = 0; $x <= 10; $x++) {
-          $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='.$cnt, '_vinted_fr_session='.$cookie), true);
-          if (is_countable($data) && count($data['items']) != 0){
-            break;
-          }
+          //$data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='.$cnt, '_vinted_fr_session='.$cookie), true);
+          $data = json_decode(file_get_contents(__DIR__ . '/../../data/albums.json'), true);
+          //if (is_countable($data) && count($data['items']) != 0){
+          //  break;
+          //}
         }
       }
       return $this->render($response, 'vintedSearch.html', [
@@ -127,7 +128,7 @@ class VintedController extends Controller {
         'data' => $data
       ]);
     }else{
-      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+      //return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
   }
 
