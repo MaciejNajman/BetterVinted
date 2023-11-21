@@ -1,15 +1,27 @@
 {{> header.html}}
+{{> main.html}}
+<section class="page-section portfolio" id="find_vinted">
+<div class="container">
+    <div>ㅤㅤㅤ</div>
 
-<h1>Strona główna</h1>
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</h2>
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fa-solid fa-heart"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
 
-<p>Witamy na stronie głównej.</p>
-<p>Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</p>
-<form action="vinted" method="GET">
-    <label for="query">Nazwa szukanego przedmiotu:</label><br>
-    <input type="text" id="query" name="query" placeholder="adidas" maxlength="30" required><br>
-    <label for="cnt">Numer strony:</label><br>
-    <input type="number" min="1" max="10" id="cnt" name="cnt" placeholder="1"><br><br>
-    <input type="submit" value="Wyślij">
-</form>
+    <form action="vinted" method="GET">
+        <center>
+        <label for="query">Nazwa szukanego przedmiotu:</label><br>
+        <input type="text" id="query" name="query" placeholder="adidas" maxlength="30" required><br>
+        <label for="cnt">Numer strony:</label><br>
+        <input type="number" min="1" max="10" id="cnt" name="cnt" placeholder="1"><br><br>
+        <input type="submit" value="Wyślij">
+        </center>
+    </form>
 
+</div>
+</section>
+{{> contact.html}}
 {{> footer.html}}
