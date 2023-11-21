@@ -24,10 +24,7 @@ $app = AppFactory::create();
 $app->get('/', '\App\Controller\HomepageController:homepage');
 $app->get('/vinted', '\App\Controller\VintedController:search');
 $app->get('/vinted/', '\App\Controller\VintedController:search');
-$app->get('/vinted/{query}', '\App\Controller\VintedController:search');
-$app->get('/vinted/{query}/{cnt:[0-9]+}', '\App\Controller\VintedController:search');
 $app->get('/contactpage', '\App\Controller\HomepageController:contactpage');
-
 
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $errorMiddleware->setErrorHandler(
