@@ -128,8 +128,7 @@ class VintedController extends Controller {
           $sortmes="Po cenie malejąco";
             break;
         default:
-    } 
-
+    }
 
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data,
