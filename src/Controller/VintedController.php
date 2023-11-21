@@ -102,8 +102,9 @@ class VintedController extends Controller {
       $cnt = $this->test_input($cntValue);
       if ($query && $cnt){
         $cookie = $this->get_cookie("https://www.vinted.pl/");
-        for ($x = 0; $x <= 10; $x++) {
-          $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='.$cnt, '_vinted_fr_session='.$cookie), true);
+        $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='."0".'&per_page='."480", '_vinted_fr_session='.$cookie), true);
+        for ($x = 0; $x <= 5; $x++) {
+
           if (is_countable($data) && count($data['items']) != 0){
             break;
           }
@@ -129,7 +130,7 @@ class VintedController extends Controller {
             break;
         default:
     }
-
+ 
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data,
         'adidas' =>$queryValue,
