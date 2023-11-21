@@ -113,22 +113,29 @@ class VintedController extends Controller {
       switch ($sortValue) {
         case 0:
           usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
+          $sortmes="Po serduszkach rosnąco";
             break;
         case 1:
           usort($data['items'], fn($b, $a) => $b['favourite_count'] <=> $a['favourite_count']);
+          $sortmes="Po serduszkach malejąco";
             break;
         case 2:
-          usort($data['items'], fn($b, $a) => $a['title'] <=> $b['title']);
+          usort($data['items'], fn($b, $a) => $a['price'] <=> $b['price']);
+          $sortmes="Po cenie rosnąco";
             break;
         case 3:
-          usort($data['items'], fn($a, $b) => $a['title'] <=> $b['title']);
+          usort($data['items'], fn($a, $b) => $a['price'] <=> $b['price']);
+          $sortmes="Po cenie malejąco";
             break;
         default:
     } 
 
 
       return $this->render($response, 'vintedSearch.html', [
-        'data' => $data
+        'data' => $data,
+        'adidas' =>$queryValue,
+        'cnt' =>$cntValue,
+        'sortmes'=>$sortmes
       ]);
     }
     else if(!empty($queryValue)) {
@@ -144,26 +151,32 @@ class VintedController extends Controller {
       }
 
       //Sortowanie
-
       switch ($sortValue) {
         case 0:
           usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
+          $sortmes="Po serduszkach rosnąco";
             break;
         case 1:
           usort($data['items'], fn($b, $a) => $b['favourite_count'] <=> $a['favourite_count']);
+          $sortmes="Po serduszkach malejąco";
             break;
         case 2:
-          usort($data['items'], fn($b, $a) => $a['title'] <=> $b['title']);
+          usort($data['items'], fn($b, $a) => $a['price'] <=> $b['price']);
+          $sortmes="Po cenie rosnąco";
             break;
         case 3:
-          usort($data['items'], fn($a, $b) => $a['title'] <=> $b['title']);
+          usort($data['items'], fn($a, $b) => $a['price'] <=> $b['price']);
+          $sortmes="Po cenie malejąco";
             break;
         default:
     } 
 
-      return $this->render($response, 'vintedSearch.html', [
-        'data' => $data
-      ]);
+    return $this->render($response, 'vintedSearch.html', [
+      'data' => $data,
+      'adidas' =>$queryValue,
+      'cnt' =>$cntValue,
+      'sortmes'=>$sortmes
+    ]);
     }else{
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
