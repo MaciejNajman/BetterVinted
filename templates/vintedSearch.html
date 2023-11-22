@@ -1,38 +1,48 @@
 {{> header.html}}
 <section class="page-section portfolio" id="find_vinted">
   <div class="container">
-      <div>ㅤㅤㅤ</div>
 
-  <center>
+    <h1 style = "margin-bottom: 30px; color: #467575;"> Wyniki Wyszukiwania:</h1>
+
+    <center>
+
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fa-solid fa-heart"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+
   <form action="vinted" method="GET">
-    <input type="text" id="query" name="query" value={{adidas}} maxlength="30" required>
-    <input type="number" min="1" max="10" id="cnt" name="cnt" value={{cnt}}>
-  
-    <input type="submit" value="Wyślij">
-
-    <select name="sort" id="sort">
+    <input type="text" id="query" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;" name="query" value={{adidas}} maxlength="30" required>
+    <input type="number" min="1" max="10" id="cnt" style="border: medium solid #467575; border-radius: 10px; height: 50px;" name="cnt" value={{cnt}}>
+    
+    <select name="sort" id="sort" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;">
       <option value="0">Po serduszkach malejąco</option>
       <option value="1">Po serduszkach rosnąco</option>
       <option value="2">Po cenie rosnąco</option>
       <option value="3">Po cenie malejąco</option>
     </select>
+
+    <p>
+    <input type="submit" value="Wyślij" style="border: medium solid transparent; border-radius: 10px; margin-top: 5px;">
   </form>
-  </center>
+
 
   <!-- Po czym jest to segregowane -->
-   {{sortmes}} 
+  <!--{{sortmes}}--> 
 
   <div class="divider-custom">
     <div class="divider-custom-line"></div>
-    <div class="divider-custom-icon"><i class="fa-solid fa-heart"></i></div>
-    <div class="divider-custom-line"></div>
   </div>
+
+</center>
 
 <!-- Wyświetlanie przedmiotów -->
 {{#data}}
 <div class="grid-container">
   {{#items}}
-    <div class="grid-item" style="border: medium solid white; border-radius: 1px; padd width: 300px; height: 550px; margin-left:15px;">  
+    <div class="grid-item" style="border: medium solid transparent; border-radius: 1px; padd width: 300px; height: 550px; margin-left:15px;">  
       <div style="text-align: left; margin-left: 5px; margin-bottom: 10px;">
       {{#user}}
         <div>
