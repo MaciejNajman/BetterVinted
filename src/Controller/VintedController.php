@@ -135,14 +135,16 @@ class VintedController extends Controller {
     }
 //Paginacja
 $pageValue=0;
-$pageStart=$pageValue*48;
+$pageStart=($pageValue*48);
 $pageStop= ($pageValue+1) *48;
-$data = array_slice($data, $pageStart, $pageStop, false);
 
-var_dump("Liczba itemów:" . count($data['items']));
+$items = $data['items'];
+$items = array_slice($items, 380,400, false);
+
+var_dump("Liczba itemów:" . count($items));
  
       return $this->render($response, 'vintedSearch.html', [
-        'data' => $data,
+        'items' => $items,
         'adidas' =>$queryValue,
         'cnt' =>$cntValue,
         'sortmes'=>$sortmes
