@@ -4,22 +4,33 @@
 <div class="container">
     <div>ㅤㅤㅤ</div>
 
-    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</h2>
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0" style="line-height: 150%">
+        Proszę podać nazwę szukanego przedmiotu, numer strony do wyświetlenia oraz rodzaj sortowania:
+    </h2>
     <div class="divider-custom">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon"><i class="fa-solid fa-heart"></i></div>
         <div class="divider-custom-line"></div>
     </div>
-
     <form action="vinted" method="GET">
         <center>
-        <label for="query">Nazwa szukanego przedmiotu:</label><br>
-        <input type="text" id="query" name="query" placeholder="adidas" maxlength="30" required style="text-align: center;"><br>
-        <label for="cnt">Numer strony:</label><br>
-        <input type="number" min="1" max="6" id="cnt" name="cnt" placeholder="1" required style="text-align: center;"><br><br>
-        <input type="submit" value="Wyślij">
+            <input type="text" id="query" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;" name="query" placeholder="adidas" maxlength="30" required>
+            <input type="number" min="1" max="6" id="cnt" style="border: medium solid #467575; border-radius: 10px; height: 50px;" name="cnt" placeholder="1" required>
+            
+            <select name="sort" id="sort" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;">
+            <option value="0">Po serduszkach malejąco</option>
+            <option value="1">Po serduszkach rosnąco</option>
+            <option value="2">Po cenie malejąco</option>
+            <option value="3">Po cenie rosnąco</option>
+            </select>
+            <p>
+            <input type="submit" value="Wyślij" style="border: medium solid transparent; border-radius: 10px; margin-top: 5px;">
         </center>
     </form>
+
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+    </div>
 
 </div>
 </section>
