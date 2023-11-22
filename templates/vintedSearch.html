@@ -26,7 +26,31 @@
     <p>
     <input type="submit" value="Wyślij" style="border: medium solid transparent; border-radius: 10px; margin-top: 5px;">
   </form>
+  <script>
+    // Function to save the selected option to local storage
+    function saveSelectedOption() {
+      var dropdown = document.getElementById('sort');
+      var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+      localStorage.setItem('selectedOption', selectedOption);
+    }
 
+    // Function to load the last selected option from local storage
+    function loadSelectedOption() {
+      var dropdown = document.getElementById('sort');
+      var selectedOption = localStorage.getItem('selectedOption');
+
+      if (selectedOption) {
+        // Select the saved option if it exists
+        dropdown.value = selectedOption;
+      }
+    }
+
+    // Load the last selected option on page load
+    window.onload = loadSelectedOption;
+
+    // Save the selected option whenever it changes
+    document.getElementById('sort').addEventListener('change', saveSelectedOption);
+  </script>
 
   <!-- Po czym jest to segregowane -->
   <!--{{sortmes}}--> 
