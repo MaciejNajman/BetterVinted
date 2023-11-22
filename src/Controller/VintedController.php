@@ -90,12 +90,12 @@ class VintedController extends Controller {
 
   public function search(Request $request, Response $response, array $args){
     $queryValue = rawurlencode($request->getQueryParam('query'));
-    $cntValue = $request->getQueryParam('cnt');
-    $sortValue = $request->getQueryParam('sort');
+    $cntValue = rawurlencode($request->getQueryParam('cnt'));
+    $sortValue = rawurlencode($request->getQueryParam('sort'));
 
-    //if($queryValue == ''){
-     // return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
-    //}
+    if($queryValue == ''){
+      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+    }
     
     if(!empty($queryValue) && !empty($cntValue)) {
       $query = $this->test_input($queryValue);
@@ -104,16 +104,14 @@ class VintedController extends Controller {
         $cookie = $this->get_cookie("https://www.vinted.pl/");
         $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='."0".'&per_page='."480", '_vinted_fr_session='.$cookie), true);
         
-
-       
         for ($x = 0; $x <= 5; $x++) {
-
           if (is_countable($data) && count($data['items']) != 0){
             break;
           }
         }
       }
       //Sortowanie
+      $sortmes = '';
       switch ($sortValue) {
         case 0:
           usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
@@ -132,22 +130,53 @@ class VintedController extends Controller {
           $sortmes="Po cenie malejąco";
             break;
         default:
-    }
-//Paginacja
-$pageValue=0;
-$pageStart=($pageValue*48);
-$pageStop= ($pageValue+1) *48;
-//TODO pageStart magiczne rzeczy robi
-$items = $data['items'];
-$items = array_slice($items, 100,200, false);
+      }
 
-var_dump("Liczba itemów:" . count($items));
+      //Paginacja
+      // variable to store number of rows per page
+      $limit = 80;
+      // get the required number of pages
+      $total_pages = ceil (480 / $limit);
+      // update the active page number
+      if (!isset ($cntValue) ) {
+        $page_number = 1;  
+      } else {  
+        $page_number = $cntValue;
+      }
+      // get the initial page number
+      $initial_page = ($page_number-1) * $limit;
+      // get data of selected rows per page
+      $items = $data['items'];
+      $result = array_slice($items, $initial_page, $limit, false);
+      
+      $page_link_1 = ('/vinted?query='.$queryValue.'&cnt='.'1'.'&sort='.$sortValue);
+      $page_link_2 = ('/vinted?query='.$queryValue.'&cnt='.'2'.'&sort='.$sortValue);
+      $page_link_3 = ('/vinted?query='.$queryValue.'&cnt='.'3'.'&sort='.$sortValue);
+      $page_link_4 = ('/vinted?query='.$queryValue.'&cnt='.'4'.'&sort='.$sortValue);
+      $page_link_5 = ('/vinted?query='.$queryValue.'&cnt='.'5'.'&sort='.$sortValue);
+      $page_link_6 = ('/vinted?query='.$queryValue.'&cnt='.'6'.'&sort='.$sortValue);
+      $page_link_next = '';
+      $page_link_prev = '';
+      if($page_number < $total_pages){
+        $page_link_next = ('/vinted?query='.$queryValue.'&cnt='.($page_number+1).'&sort='.$sortValue);
+      }
+      if($page_number >= 2){
+        $page_link_prev = ('/vinted?query='.$queryValue.'&cnt='.($page_number-1).'&sort='.$sortValue);
+      }
  
       return $this->render($response, 'vintedSearch.html', [
-        'items' => $items,
+        'items' => $result,
         'adidas' =>$queryValue,
         'cnt' =>$cntValue,
-        'sortmes'=>$sortmes
+        'sortmes'=>$sortmes,
+        'page_link_1' => $page_link_1,
+        'page_link_2' => $page_link_2,
+        'page_link_3' => $page_link_3,
+        'page_link_4' => $page_link_4,
+        'page_link_5' => $page_link_5,
+        'page_link_6' => $page_link_6,
+        'page_link_next' => $page_link_next,
+        'page_link_prev' => $page_link_prev
       ]);
     }
     else if(!empty($queryValue)) {
@@ -158,6 +187,7 @@ var_dump("Liczba itemów:" . count($items));
       }
 
       //Sortowanie
+      $sortmes = '';
       switch ($sortValue) {
         case 0:
           usort($data['items'], fn($b, $a) => $a['favourite_count'] <=> $b['favourite_count']);
@@ -176,7 +206,7 @@ var_dump("Liczba itemów:" . count($items));
           $sortmes="Po cenie malejąco";
             break;
         default:
-    } 
+      } 
 
     return $this->render($response, 'vintedSearch.html', [
       'data' => $data,
@@ -185,7 +215,7 @@ var_dump("Liczba itemów:" . count($items));
       'sortmes'=>$sortmes
     ]);
     }else{
-      //return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
   }
 
