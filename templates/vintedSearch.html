@@ -1,57 +1,90 @@
 {{> header.html}}
+<section class="page-section portfolio" id="find_vinted">
+  <div class="container">
 
-<h1>Wyniki wyszukiwania w Vinted</h1>
-<p>Proszę podać nazwę szukanego przedmiotu oraz numer strony do wyświetlenia:</p>
-<form action="vinted" method="GET">
-    <label for="query">Nazwa szukanego przedmiotu:</label><br>
-    <input type="text" id="query" name="query" value={{adidas}} maxlength="30" required><br>
-    <label for="cnt">Numer strony:</label><br>
-    <input type="number" min="1" max="10" id="cnt" name="cnt" value={{cnt}}><br><br>
-    <input type="submit" value="Wyślij">
+    <h1 style = "margin-bottom: 30px; color: #467575;"> Wyniki Wyszukiwania:</h1>
 
-    <select name="sort" id="sort">
+    <center>
+
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fa-solid fa-heart"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+
+  <form action="vinted" method="GET">
+    <input type="text" id="query" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;" name="query" value={{adidas}} maxlength="30" required>
+    <input type="number" min="1" max="10" id="cnt" style="border: medium solid #467575; border-radius: 10px; height: 50px;" name="cnt" value={{cnt}}>
+    
+    <select name="sort" id="sort" style="border: medium solid #467575; border-radius: 10px; height: 50px; width: 210px;">
       <option value="0">Po serduszkach malejąco</option>
       <option value="1">Po serduszkach rosnąco</option>
       <option value="2">Po cenie rosnąco</option>
       <option value="3">Po cenie malejąco</option>
     </select>
-</form>
-{{sortmes}}
+    <p>
+    <input type="submit" value="Wyślij" style="border: medium solid transparent; border-radius: 10px; margin-top: 5px;">
+  </form>
 
 
+  <!-- Po czym jest to segregowane -->
+  <!--{{sortmes}}--> 
+
+  <div class="divider-custom">
+    <div class="divider-custom-line"></div>
+  </div>
+
+</center>
+
+<!-- Wyświetlanie przedmiotów -->
 <div class="grid-container">
-{{#items}}
-    <div class="grid-item" style="border: medium solid #3385ff; border-radius: 12px; padding: 10px; margin: 10px;">
+  {{#items}}
+    <div class="grid-item" style="border: medium solid transparent; border-radius: 1px; padd width: 300px; height: 550px; margin-left:15px;">  
+      <div style="text-align: left; margin-left: 5px; margin-bottom: 10px;">
       {{#user}}
-      <div>
-        <a href="{{profile_url}}">
-          <div>
-            {{login}}
-            {{#photo}}
-            <img src={{url}} alt="photo_url" width="30" height="30"></img>
-            {{/photo}}
-          </div>
-        </a>
-      </div>
+        <div>
+          <a href="{{profile_url}}" style="text-decoration: none;">
+            <div>
+              {{#photo}}
+                <img src={{url}} alt="photo_url" width="30" height="30" style="border-radius: 50%;"></img> &nbsp;
+              {{/photo}}
+              {{login}}
+            </div>
+          </a>
+        </div>
       {{/user}}
+      </div>
+      
+
+
+
       <div>
         <a href="{{url}}" alt="item_url">
           {{#photo}}
-          <div><img src="{{url}}" alt="item_photo" width="200" height="200"></img></div>
+            <div><img src="{{url}}" alt="item_photo" width="300" height="400" style="border-radius: 20px;"></div>
           {{/photo}}
         </a>
       </div>
-      <div>
-        <h2>{{title}}</h2>
-        <p>{{price}}&nbsp{{currency}}</p>
-        <p>{{favourite_count}} serduszek <b><3</b>
-        </p>
-        <p>Stan: {{status}}</p>
-        <p>{{brand_title}}</p>
-      </div>
-    </div>
-{{/items}}
+      
+      <div style="text-align: left; margin-left: 5px; margin-right: 5px;">
+        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+          <p style="font-size: 20px; margin-bottom: 2px;">{{price}} zł</p>
+          <p style="margin-bottom: 2px;">
+            <i class="fa-regular fa-heart" style="font-size: 20px;"></i>
+            <span style="font-size: 15px;">{{favourite_count}}</span>
+          </p>
+        </div>
+
+        <p style="margin-bottom: 1px; font-size: 15px;"></pstyle>{{size_title}}</p>
+        <p style="font-size: 15px;">{{brand_title}}</p>
+     </div>
+      <!-- <h8>{{title}}</h8> <p>{{brand_title}}</p> {{currency}} <p>Stan: {{status}}</p>-->
+
+  </div>
+  {{/items}}
 </div>
+
 
 {{^items}}
 <div>
@@ -72,5 +105,6 @@
   <a href="#">&raquo;</a>
 </div>
 </div>
-
+</div>
+</section>
 {{> footer.html}}

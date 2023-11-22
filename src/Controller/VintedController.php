@@ -93,9 +93,9 @@ class VintedController extends Controller {
     $cntValue = $request->getQueryParam('cnt');
     $sortValue = $request->getQueryParam('sort');
 
-    if($queryValue == ''){
-      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
-    }
+    //if($queryValue == ''){
+     // return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+    //}
     
     if(!empty($queryValue) && !empty($cntValue)) {
       $query = $this->test_input($queryValue);
@@ -185,7 +185,7 @@ var_dump("Liczba itemów:" . count($items));
       'sortmes'=>$sortmes
     ]);
     }else{
-      return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
+      //return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
   }
 

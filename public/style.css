@@ -4619,32 +4619,10 @@ textarea.form-control-lg {
   color: var(--bs-breadcrumb-item-active-color);
 }
 
-.pagination-parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .pagination {
-  display: inline-block;
-}
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #3385ff;
-  color: white;
-  border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-  border-radius: 5px;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
 }
 
 .page-link {
