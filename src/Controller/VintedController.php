@@ -168,7 +168,6 @@ class VintedController extends Controller {
         'items' => $result,
         'adidas' =>$queryValue,
         'cnt' =>$cntValue,
-        'sortmes'=>$sortmes,
         'page_link_1' => $page_link_1,
         'page_link_2' => $page_link_2,
         'page_link_3' => $page_link_3,
@@ -206,13 +205,53 @@ class VintedController extends Controller {
           $sortmes="Po cenie malejąco";
             break;
         default:
-      } 
+      }
+
+      //Paginacja
+      $page_number = 0;
+      // variable to store number of rows per page
+      $limit = 80;
+      // get the required number of pages
+      $total_pages = ceil (480 / $limit);
+      // update the active page number
+      if (!isset ($cntValue) ) {
+        $page_number = 1;  
+      } else {  
+        $page_number = $cntValue;
+      }
+      // get the initial page number
+      $initial_page = ((int)$page_number-1) * $limit;
+      // get data of selected rows per page
+      $items = $data['items'];
+      $result = array_slice($items, $initial_page, $limit, false);
+      
+      $page_link_1 = ('/vinted?query='.$queryValue.'&cnt='.'1'.'&sort='.$sortValue);
+      $page_link_2 = ('/vinted?query='.$queryValue.'&cnt='.'2'.'&sort='.$sortValue);
+      $page_link_3 = ('/vinted?query='.$queryValue.'&cnt='.'3'.'&sort='.$sortValue);
+      $page_link_4 = ('/vinted?query='.$queryValue.'&cnt='.'4'.'&sort='.$sortValue);
+      $page_link_5 = ('/vinted?query='.$queryValue.'&cnt='.'5'.'&sort='.$sortValue);
+      $page_link_6 = ('/vinted?query='.$queryValue.'&cnt='.'6'.'&sort='.$sortValue);
+      $page_link_next = '';
+      $page_link_prev = '';
+      if($page_number < $total_pages){
+        $page_link_next = ('/vinted?query='.$queryValue.'&cnt='.((int)$page_number+1).'&sort='.$sortValue);
+      }
+      if($page_number >= 2){
+        $page_link_prev = ('/vinted?query='.$queryValue.'&cnt='.((int)$page_number-1).'&sort='.$sortValue);
+      }
 
     return $this->render($response, 'vintedSearch.html', [
-      'data' => $data,
+      'items' => $result,
       'adidas' =>$queryValue,
       'cnt' =>$cntValue,
-      'sortmes'=>$sortmes
+      'page_link_1' => $page_link_1,
+      'page_link_2' => $page_link_2,
+      'page_link_3' => $page_link_3,
+      'page_link_4' => $page_link_4,
+      'page_link_5' => $page_link_5,
+      'page_link_6' => $page_link_6,
+      'page_link_next' => $page_link_next,
+      'page_link_prev' => $page_link_prev
     ]);
     }else{
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
