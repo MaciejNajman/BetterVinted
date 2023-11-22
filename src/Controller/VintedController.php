@@ -137,9 +137,9 @@ class VintedController extends Controller {
 $pageValue=0;
 $pageStart=($pageValue*48);
 $pageStop= ($pageValue+1) *48;
-
+//TODO pageStart magiczne rzeczy robi
 $items = $data['items'];
-$items = array_slice($items, 380,400, false);
+$items = array_slice($items, 100,200, false);
 
 var_dump("Liczba itemów:" . count($items));
  
