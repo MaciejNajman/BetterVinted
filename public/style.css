@@ -6,8 +6,6 @@ body {
     color: black;
     font-size: 15px;
     transition: 0.5s;
-    
-    
   }
   
   .dark-mode {
@@ -501,12 +499,7 @@ select:disabled {
   display: none !important;
 }
 
-button,
-[type=button],
-[type=reset],
-[type=submit] {
-  -webkit-appearance: button;
-}
+
 button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
@@ -561,11 +554,6 @@ legend + * {
   height: auto;
 }
 
-[type=search] {
-  outline-offset: -2px;
-  -webkit-appearance: textfield;
-}
-
 /* rtl:raw:
 [type="tel"],
 [type="url"],
@@ -580,11 +568,6 @@ legend + * {
 
 ::-webkit-color-swatch-wrapper {
   padding: 0;
-}
-
-::file-selector-button {
-  font: inherit;
-  -webkit-appearance: button;
 }
 
 output {
@@ -4620,9 +4603,25 @@ textarea.form-control-lg {
 }
 
 .pagination {
-  display: flex;
-  padding-left: 0;
-  list-style: none;
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #2C3E50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
 }
 
 .page-link {
