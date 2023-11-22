@@ -23,7 +23,6 @@
       <option value="2">Po cenie rosnąco</option>
       <option value="3">Po cenie malejąco</option>
     </select>
-
     <p>
     <input type="submit" value="Wyślij" style="border: medium solid transparent; border-radius: 10px; margin-top: 5px;">
   </form>
@@ -39,7 +38,6 @@
 </center>
 
 <!-- Wyświetlanie przedmiotów -->
-{{#data}}
 <div class="grid-container">
   {{#items}}
     <div class="grid-item" style="border: medium solid transparent; border-radius: 1px; padd width: 300px; height: 550px; margin-left:15px;">  
@@ -87,16 +85,13 @@
   {{/items}}
 </div>
 
-{{/data}}
 
-{{#data}}
-  {{^items}}
-    <div>
-      <h2>Niestety, pusto.</h2>
-      <p>Nie znaleźliśmy pasujących przedmiotów. Spróbuj wpisać inne słowo kluczowe lub zmienić filtry.</p>
-    </div>
-  {{/items}}
-{{/data}}
+{{^items}}
+<div>
+  <h2>Niestety, pusto.</h2>
+  <p>Nie znaleźliśmy pasujących przedmiotów. Spróbuj wpisać inne słowo kluczowe lub zmienić filtry.</p>
+</div>
+{{/items}}
 
 
 <div class="pagination-parent">
