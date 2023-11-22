@@ -103,15 +103,15 @@ class VintedController extends Controller {
       if ($query && $cnt){
         $cookie = $this->get_cookie("https://www.vinted.pl/");
         $data = json_decode($this->get_web_page('https://www.vinted.pl/api/v2/catalog/items?search_text='.$query.'&page='."0".'&per_page='."480", '_vinted_fr_session='.$cookie), true);
-<<<<<<< HEAD
+        
+
+       
         for ($x = 0; $x <= 5; $x++) {
 
           if (is_countable($data) && count($data['items']) != 0){
             break;
           }
         }
-=======
->>>>>>> 755bb553d67a98e3d76f8e9430c8555cb9df16a4
       }
       //Sortowanie
       switch ($sortValue) {
@@ -133,6 +133,13 @@ class VintedController extends Controller {
             break;
         default:
     }
+//Paginacja
+$pageValue=0;
+$pageStart=$pageValue*48;
+$pageStop= ($pageValue+1) *48;
+$data = array_slice($data, $pageStart, $pageStop, false);
+
+var_dump("Liczba itemów:" . count($data['items']));
  
       return $this->render($response, 'vintedSearch.html', [
         'data' => $data,
