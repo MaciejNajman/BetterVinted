@@ -93,6 +93,17 @@ class VintedController extends Controller {
     $cntValue = rawurlencode($request->getQueryParam('cnt'));
     $sortValue = rawurlencode($request->getQueryParam('sort'));
 
+    if (!empty($cntValue)){
+      $cntValue;
+    } else {
+      $cntValue = 1;
+    }
+    // if (!empty($sortValue)){
+    //   $sortValue;
+    // } else {
+    //   $sortValue = 0;
+    // }
+
     if($queryValue == ''){
       return $response->withStatus(400)->withJson(['error' => 'Invalid query']);
     }
